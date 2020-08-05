@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block content %}
+
+<!-- Breadcrumb -->
+<section id="bc" class="mt-3">
+    <div>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="{% url 'index' %}">Home</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="{% url 'product' %}">Name of Categories</a>
+          </li>
+          <li class="breadcrumb-item active">Product Title</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+    <!--product details-->
+    <section id="listing" class="py-4">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <!-- Home Main Image -->
+             <div style="text-align: center;">
+                 <img src="{{single.main_img.url}}" alt="" class="img-main img-fluid mb-3" style="width: 900px; height: 400px;">
+             </div>
+              <!-- Thumbnails -->
+              <div class="row mb-5 thumbs">
+                  {% if single.img_1 %}
+                  <div class="col-md-2">
+                    <a href="{{single.img_1.url}}" data-lightbox="home-images">
+                      <img src="{{single.img_1.url}}" alt="" class="img-fluid">
+                    </a>
+                  </div>
+                  {% endif %}
+                  {% if single.img_2 %}
+                  <div class="col-md-2">
+                    <a href="{{single.img_2.url}}" data-lightbox="home-images">
+                      <img src="{{single.img_2.url}}" alt="" class="img-fluid">
+                    </a>
+                  </div>
+                  {% endif %}
+                  {% if single.img_3 %}
+                  <div class="col-md-2">
+                    <a href="{{single.img_3.url}}" data-lightbox="home-images">
+                      <img src="{{single.img_3.url}}" alt="" class="img-fluid">
+                    </a>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+              </div>
+
+              <!-- Description -->
+              <div class="row mb-5">
+                <div class="col-md-12 lead" style="text-align: justify;">
+                    <div>
+                        <h2>{{single.prod_name}}</h2>
+                    </div>
+                  {{single.description}}<br><br>
+                  <span class="lead">Price: # {{single.price | intcomma}} </span>
+                  <div class="buy" style="padding-left:10px; float:right;">
+                    <a href="" class="btn btn-sm btn-primary" style="float:right">Buy Now</a>
+                  </div>
+                  <div class="cart" style="padding-left:10px; float:right;">
+                    <form action="{% url 'cart' %}" method="POST">
+                      {% csrf_token %}
+                      <input type="text" name="name" value="{{single.prod_name}}" hidden>
+                      <input type="text" name="prod_id" value="{{single.id}}" hidden>
+                      {% if user.is_authenticated %}
+                      <input type="text" name="username" value="{{user.username}}" hidden>
+                      {% endif %}
+                      <button class="btn btn-sm btn-danger"><i style="font-size: 14px;" class="small material-icon">child_friendly</i>Cart</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+    <br>
+
+{% endblock %}

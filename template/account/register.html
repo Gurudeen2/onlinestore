@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Store </title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        .loginbg .container .login{
+            width: 460px;
+            height: 720px;
+        
+        }
+        label{
+            color: white;
+            font-weight: bold;
+        }
+        #hov{
+            background-color: yellowgreen;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<!--Register-->
+<div class="loginbg">
+    <div class="container">
+        <div class="login">
+            <div style="background-color: #fff;">
+                <h2>Customer Registration</h2>
+            </div>
+            <hr style="background-color:white;">
+            <div style="padding-top: 10px;">
+                <!--Alert-->
+                {% include 'partials/_alerts.html' %}
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="">First Name:</label>
+                        <input type="text" name="firstname" id="" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Last Name:</label>
+                        <input type="text" name="lastname" id="" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Username:</label>
+                        <input type="text" name="username" id="" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Email:</label>
+                        <input type="text" name="email" id="" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Password:</label>
+                        <input type="password" name="password" id="" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Confirm Password:</label>
+                        <input type="password" name="con_password" id="" class="form-control" required>
+                    </div>
+                    <div class="form-group" style="padding-top:5px;">
+                        <input type="submit" value="Register" id="hov" class="btn" style="width: 100%; background-color:darkgreen; color:#fff;">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+              <script src="js/bootstrap.min.js"></script>
+              <script src="js/bootstrap.bundle.min.js"></script>
+              <script src="js/bootstrap.bundle.js"></script>
+              <script src="js/bootstrap.min.js"></script>
+              <script src="js/bootstrap.bundle.min.js"></script>
+              <script src="js/bootstrap.bundle.js"></script>
+              <script src="js/jquery-slim.min.js"></script>
+              <script src="js/util.js"></script>
+              <script src="js/dropdown.js"></script>
+              <script src="js/carousel.js"></script>
+              <script>
+                $('.carousel').carousel({
+                  interval: 3000
+                });
+                var year = new Date();
+                document.getElementById('now').innerHTML = year.getFullYear();
+              </script>
+</body>
+</html>
